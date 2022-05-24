@@ -68,14 +68,18 @@ const styled = new Proxy(
   {
     get(t: any, p: string) {
       if (!(p in t)) {
-        const as = p.toLowerCase()
-        const Styled = (props: Props) =>
-          createElement(
-            as,
-            props.style ? transformProps(props, props.style) : props,
-            props.children
-          )
-        t[p] = Styled
+        if (p === 'prototype') {
+          t[p] = undefined
+        } else {
+          const as = p.toLowerCase()
+          const Styled = (props: Props) =>
+            createElement(
+              as,
+              props.style ? transformProps(props, props.style) : props,
+              props.children
+            )
+          t[p] = Styled
+        }
       }
       return t[p]
     }
