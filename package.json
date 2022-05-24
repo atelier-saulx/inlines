@@ -1,0 +1,47 @@
+{
+  "name": "inlines",
+  "description": "When you just want to use the style prop in React",
+  "version": "0.1.0",
+  "main": "index.js",
+  "types": "index.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "dev": "npx tsc -w"
+  },
+  "files": [
+    "index.ts",
+    "index.js"
+  ],
+  "devDependencies": {
+    "@types/react": "^18.0.9",
+    "typescript": "^4.6.4"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "dependencies": {
+    "goober": "2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youzi/inlines.git"
+  },
+  "keywords": [
+    "react",
+    "inline",
+    "style",
+    "styled",
+    "css"
+  ],
+  "author": "youzi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youzi/inlines/issues"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
+  "homepage": "https://github.com/youzi/inlines#readme"
+}
