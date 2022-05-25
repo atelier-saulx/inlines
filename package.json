@@ -2,15 +2,19 @@
   "name": "inlines",
   "description": "When you just want to use the style prop in React",
   "version": "0.1.0",
-  "main": "index.js",
-  "types": "index.ts",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "dev": "npx tsc -w"
+    "dev": "npx tsc -w",
+    "test": "node test.js"
   },
   "files": [
-    "index.ts",
-    "index.js"
+    "src",
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "devDependencies": {
     "@types/react": "^18.0.9",
