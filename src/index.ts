@@ -1,6 +1,6 @@
 import { createElement } from 'react'
 import { css, keyframes } from 'goober'
-import { transform } from './transform'
+import { transform } from './transform.js'
 import type { Props, Style, As } from './types'
 
 const styled = new Proxy(
