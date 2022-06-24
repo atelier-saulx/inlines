@@ -1,11 +1,11 @@
-import { createElement } from 'react'
+import { createElement, forwardRef } from 'react'
 import { css, keyframes } from 'goober'
 import { transform } from './transform.js'
 import type { Props, Style, As } from './types'
 
 const styled = new Proxy(
   (as: As, style: Style) => {
-    const Styled = (props: Props) =>
+    const Styled = forwardRef((props: Props, ref) =>
       createElement(
         as,
         transform(
@@ -15,10 +15,12 @@ const styled = new Proxy(
                 ...style,
                 ...props.style
               }
-            : style
+            : style,
+          ref
         ),
         props.children
       )
+    )
 
     return Styled
   },
@@ -29,12 +31,13 @@ const styled = new Proxy(
           t[p] = undefined
         } else {
           const as = p.toLowerCase()
-          const Styled = (props: Props) =>
+          const Styled = forwardRef((props: Props, ref) =>
             createElement(
               as,
-              props.style ? transform(props, props.style) : props,
+              transform(props, props.style, ref),
               props.children
             )
+          )
           t[p] = Styled
         }
       }

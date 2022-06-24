@@ -13,8 +13,8 @@ const addImportant = (nested: any, style: Style) => {
   }
 }
 
-export const transform = (p: Props, style: Style) => {
-  const props = { ...p }
+export const transform = (p: Props, style: Style, ref: any) => {
+  const props = { ...p, ref }
   const s = {} as Style
   for (const key in style) {
     const value = style[key]
