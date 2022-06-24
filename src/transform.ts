@@ -1,3 +1,4 @@
+import { CSSAttribute } from 'goober'
 import { css, keyframes } from 'goober'
 import type { Props, Style } from './types'
 
@@ -24,13 +25,13 @@ export const transform = (p: Props, style: Style, ref: any) => {
           if (key[1] === 'm') {
             addImportant(value, style)
           } else if (key[1] === 'k') {
-            s.animation = `${keyframes(value)} 1s`
+            s.animation = `${keyframes(value as CSSAttribute)} 1s`
             continue
           }
         } else if (key[0] === '&') {
           addImportant(value, style)
         }
-        const className = css({ [key]: value })
+        const className = css({ [key]: value as CSSAttribute })
         props.className = props.className
           ? `${props.className} ${className}`
           : className
