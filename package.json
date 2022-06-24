@@ -3,7 +3,7 @@
   "description": "When you just want to use the style prop in React",
   "version": "0.2.0",
   "main": "dist/index.js",
-  "types": "src/index.ts",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "npx tsc",

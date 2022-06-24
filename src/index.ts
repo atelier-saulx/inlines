@@ -46,4 +46,5 @@ const styled = new Proxy(
   }
 )
 
+export type { Props, Style, As }
 export { styled, css, keyframes }
