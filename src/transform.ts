@@ -15,9 +15,10 @@ const addImportant = (nested: any, style: Style) => {
 }
 
 export const transform = (p: Props, style: Style, ref: any) => {
-  const props = { ...p, ref }
+  const props = { ...p, ref } as Props
   const s = {} as Style
   for (const key in style) {
+    // @ts-ignore
     const value = style[key]
     if (typeof value === 'object') {
       if (value !== null) {
@@ -37,6 +38,7 @@ export const transform = (p: Props, style: Style, ref: any) => {
           : className
       }
     } else {
+      // @ts-ignore
       s[key] = value
     }
   }

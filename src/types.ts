@@ -2,11 +2,17 @@ import {
   ComponentClass,
   CSSProperties,
   FunctionComponent,
-  PropsWithChildren
+  HTMLProps,
+  ReactNode
 } from 'react'
 
-export type Props = PropsWithChildren<any>
-export type As = string | FunctionComponent<any> | ComponentClass<any, any>
-export interface Style extends CSSProperties {
-  [key: string]: Style | string | number | undefined | null
+export type Style = CSSProperties & {
+  [key: `@media${string}`]: Style
+  [key: `@keyframes${string}`]: Record<string, CSSProperties>
+  [key: `&${string}`]: Style
 }
+export type Props = { [key: string]: any; style: Style; children?: ReactNode }
+export type As = string | FunctionComponent<any> | ComponentClass<any, any>
+export type StyledComponent = FunctionComponent<Props>
+export type StyledHtmlComponent = FunctionComponent<HTMLProps<any> & Props>
+export type StyledFn = (as: As, style: Style) => StyledComponent
