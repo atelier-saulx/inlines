@@ -1,4 +1,3 @@
-import { CSSAttribute } from 'goober'
 import { css, keyframes } from 'goober'
 import type { Props, Style } from './types'
 
@@ -15,24 +14,34 @@ const addImportant = (nested: any, style: Style) => {
 }
 
 export const transform = (p: Props, style: Style, ref: any) => {
+  // add some defaults
+  if ('onClick' in p && !('cursor' in style)) {
+    style.cursor = 'pointer'
+  }
+
   const props = { ...p, ref } as Props
   const s = {} as Style
-  for (const key in style) {
+
+  for (let key in style) {
     // @ts-ignore
-    const value = style[key]
+    let value = style[key]
     if (typeof value === 'object') {
       if (value !== null) {
         if (key[0] === '@') {
           if (key[1] === 'm') {
             addImportant(value, style)
           } else if (key[1] === 'k') {
-            s.animation = `${keyframes(value as CSSAttribute)} 1s`
+            s.animation = `${keyframes(value)} 1s`
             continue
           }
         } else if (key[0] === '&') {
+          if (key.includes(':hover')) {
+            value = { [key]: value }
+            key = '@media (hover: hover)'
+          }
           addImportant(value, style)
         }
-        const className = css({ [key]: value as CSSAttribute })
+        const className = css({ [key]: value })
         props.className = props.className
           ? `${props.className} ${className}`
           : className
