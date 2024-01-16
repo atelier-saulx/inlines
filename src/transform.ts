@@ -13,12 +13,7 @@ const addImportant = (nested: any, style: Style) => {
   }
 }
 
-export const transform = (p: Props, style: Style, ref: any) => {
-  // add some defaults
-  if ('onClick' in p && !('cursor' in style)) {
-    style.cursor = 'pointer'
-  }
-
+export const transform = (p: Props, style: Style = {}, ref: any) => {
   const props = { ...p, ref } as Props
   const s = {} as Style
 
@@ -51,6 +46,12 @@ export const transform = (p: Props, style: Style, ref: any) => {
       s[key] = value
     }
   }
+
+  // add some defaults
+  if (p.onClick && !s.cursor) {
+    s.cursor = 'pointer'
+  }
+
   props.style = s
   return props
 }
