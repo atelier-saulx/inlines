@@ -1,5 +1,5 @@
 import { css, keyframes } from 'goober'
-import type { Props, Style } from './types'
+import type { Props, Style, Theme } from './types'
 
 const addImportant = (nested: any, style: Style) => {
   for (const key in nested) {
@@ -13,7 +13,29 @@ const addImportant = (nested: any, style: Style) => {
   }
 }
 
-export const transform = (p: Props, style: Style = {}, ref: any) => {
+const replaceNestedValue = (value: any, style: Style, theme: Theme) => {
+  const sortedKeys = Object.keys(theme).sort((a, b) => b.length - a.length)
+
+  for (const key in value) {
+    if (typeof value[key] === 'object') {
+      replaceNestedValue(value[key], style, theme)
+      continue
+    }
+
+    for (const themeKey of sortedKeys) {
+      if (typeof value[key] === 'string' && value[key].includes(themeKey)) {
+        value[key] = value[key].replace(themeKey, theme[themeKey])
+      }
+    }
+  }
+}
+
+export const transform = (
+  p: Props,
+  style: Style = {},
+  ref: any,
+  theme?: Theme
+) => {
   const props = { ...p, ref } as Props
   const s = {} as Style
 
@@ -36,12 +58,28 @@ export const transform = (p: Props, style: Style = {}, ref: any) => {
           }
           addImportant(value, style)
         }
+
+        if (theme) {
+          replaceNestedValue(value, style, theme)
+        }
+
         const className = css({ [key]: value })
         props.className = props.className
           ? `${props.className} ${className}`
           : className
       }
     } else {
+      if (theme) {
+        const sortedKeys = Object.keys(theme).sort(
+          (a, b) => b.length - a.length
+        )
+        for (const themeKey of sortedKeys) {
+          if (typeof value === 'string' && value.includes(themeKey)) {
+            value = value.replace(themeKey, theme[themeKey])
+          }
+        }
+      }
+
       // @ts-ignore
       s[key] = value
     }

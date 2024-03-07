@@ -16,3 +16,4 @@ export type As = string | FunctionComponent<any> | ComponentClass<any, any>
 export type StyledComponent = FunctionComponent<Props>
 export type StyledHtmlComponent = FunctionComponent<HTMLProps<any> & Props>
 export type StyledFn = (as: As, style: Style) => StyledComponent
+export type Theme = { [key: string]: string }
