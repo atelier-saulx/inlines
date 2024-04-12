@@ -1,12 +1,11 @@
 {
+  "extends": "@saulx/tsconfig/default.json",
   "compilerOptions": {
-    "module": "ES2022",
-    "target": "ES2022",
-    "moduleResolution": "node",
-    "strict": true,
-    "skipLibCheck": true,
-    "rootDir": "src",
     "outDir": "dist",
-    "declaration": true
-  }
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "include": ["./src", "./test"],
+  "exclude": ["./test/browser", "./dist/test", "./dist/src"]
 }

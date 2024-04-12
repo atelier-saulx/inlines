@@ -2,29 +2,26 @@
   "name": "inlines",
   "description": "When you just want to use the style prop in React",
   "version": "0.4.0-alpha.2",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "dev": "npx tsc -w",
-    "test": "node test.js"
+    "watch": "npx tsc -w",
+    "test": "npx ava"
   },
   "files": [
     "src",
-    "dist",
+    "dist/src",
     "README.md",
     "LICENSE"
   ],
-  "devDependencies": {
-    "@types/react": "^18.0.9",
-    "typescript": "^4.6.4"
-  },
-  "peerDependencies": {
-    "react": "*"
-  },
-  "dependencies": {
-    "goober": "2"
+  "ava": {
+    "timeout": "4m",
+    "workerThreads": false,
+    "files": [
+      "./dist/test/**/*.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -42,10 +39,21 @@
   "bugs": {
     "url": "https://github.com/youzi/inlines/issues"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "none"
+  "prettier": "@saulx/prettier-config",
+  "homepage": "https://github.com/youzi/inlines#readme",
+  "peerDependencies": {
+    "react": "*"
   },
-  "homepage": "https://github.com/youzi/inlines#readme"
+  "dependencies": {
+    "goober": "2"
+  },
+  "devDependencies": {
+    "@saulx/prettier-config": "^2.0.0",
+    "@saulx/tsconfig": "^1.1.0",
+    "@types/react": "^18.0.9",
+    "ava": "^6.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.5"
+  }
 }

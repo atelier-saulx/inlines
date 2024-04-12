@@ -1,5 +1,5 @@
 import { createElement, forwardRef } from 'react'
-import { css, keyframes } from 'goober'
+import { css, keyframes, extractCss, setup } from 'goober'
 import { transform } from './transform.js'
 import type {
   Props,
@@ -7,8 +7,8 @@ import type {
   As,
   StyledComponent,
   StyledHtmlComponent,
-  StyledFn
-} from './types'
+  StyledFn,
+} from './types.js'
 
 const styled = new Proxy(
   (as: As, style: Style) => {
@@ -20,13 +20,13 @@ const styled = new Proxy(
           props.style
             ? {
                 ...style,
-                ...props.style
+                ...props.style,
               }
             : style,
-          ref
+          ref,
         ),
-        props.children
-      )
+        props.children,
+      ),
     )
 
     return Styled
@@ -42,16 +42,16 @@ const styled = new Proxy(
             createElement(
               as,
               transform(props, props.style, ref),
-              props.children
-            )
+              props.children,
+            ),
           )
           t[p] = Styled
         }
       }
       return t[p]
-    }
-  }
+    },
+  },
 ) as Record<string, StyledHtmlComponent> & StyledFn
 
 export type { Props, Style, As, StyledComponent, StyledFn, StyledHtmlComponent }
-export { styled, css, keyframes }
+export { styled, css, keyframes, extractCss, setup }

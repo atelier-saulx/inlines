@@ -3,7 +3,7 @@ import {
   CSSProperties,
   FunctionComponent,
   HTMLProps,
-  ReactNode
+  ReactNode,
 } from 'react'
 
 export type Style = CSSProperties & {
