@@ -48,6 +48,7 @@
     "goober": "2"
   },
   "devDependencies": {
+    "seafox": "1.7.1",
     "@saulx/prettier-config": "^2.0.0",
     "@saulx/tsconfig": "^1.1.0",
     "@types/react": "^18.0.9",
