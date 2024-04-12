@@ -1,0 +1,14 @@
+import { styled } from 'inlines'
+
+export const Hello = () => {
+    return <styled.div flap style={{
+        background: "red",
+        color: "blue",
+        opacity: 2 // THIS IS BA,,,LLS
+        ,
+        bla: 2.1,
+        
+    }}>
+        Hello
+    </styled.div>
+}

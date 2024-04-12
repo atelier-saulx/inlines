@@ -20,7 +20,8 @@
     "timeout": "4m",
     "workerThreads": false,
     "files": [
-      "./dist/test/**/*.js"
+      "./dist/test/extract.js",
+      "./dist/test/ssr.js"
     ]
   },
   "repository": {
@@ -48,10 +49,10 @@
     "goober": "2"
   },
   "devDependencies": {
-    "seafox": "1.7.1",
     "@saulx/prettier-config": "^2.0.0",
     "@saulx/tsconfig": "^1.1.0",
     "@types/react": "^18.0.9",
+    "@types/node": "18",
     "ava": "^6.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
