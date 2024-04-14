@@ -1,4 +1,4 @@
-import { css, keyframes } from 'goober'
+import { css, keyframes } from './css.js'
 import type { Props, Style } from './types.js'
 
 const addImportant = (nested: any, style: Style) => {

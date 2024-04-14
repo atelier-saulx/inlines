@@ -1,6 +1,7 @@
 import { createElement, forwardRef } from 'react'
-import { css, keyframes, extractCss, setup } from 'goober'
+import { css, keyframes } from './css.js'
 import { transform } from './transform.js'
+
 import type {
   Props,
   Style,
@@ -51,7 +52,7 @@ const styled = new Proxy(
       return t[p]
     },
   },
-) as Record<string, StyledHtmlComponent> & StyledFn
+) as { [key: string]: StyledHtmlComponent } & StyledFn
 
 export type { Props, Style, As, StyledComponent, StyledFn, StyledHtmlComponent }
-export { styled, css, keyframes, extractCss, setup }
+export { styled, css, keyframes }

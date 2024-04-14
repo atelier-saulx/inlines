@@ -1,9 +1,14 @@
 {
   "name": "inlines",
   "description": "When you just want to use the style prop in React",
-  "version": "0.4.0-alpha.2",
+  "version": "0.4.0-alpha.23",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "source": "src/index.ts",
+  "exports": {
+    ".": "./dist/src/index.js",
+    "./ssr": "./dist/src/ssr.js"
+  },
   "type": "module",
   "scripts": {
     "build": "npx tsc",
@@ -12,7 +17,8 @@
   },
   "files": [
     "src",
-    "dist/src",
+    "dist/src/**/*.js",
+    "dist/src/**/*.d.ts",
     "README.md",
     "LICENSE"
   ],
@@ -26,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/youzi/inlines.git"
+    "url": "git+https://github.com/atelier-saulx/inlines.git"
   },
   "keywords": [
     "react",
@@ -35,24 +41,27 @@
     "styled",
     "css"
   ],
+  "sideEffects": false,
   "author": "youzi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/youzi/inlines/issues"
+    "url": "https://github.com/atelier-saulx/inlines/issues"
   },
   "prettier": "@saulx/prettier-config",
-  "homepage": "https://github.com/youzi/inlines#readme",
+  "homepage": "https://github.com/atelier-saulx/inlines#readme",
   "peerDependencies": {
-    "react": "*"
+    "react": "*",
+    "typescript": "*"
   },
   "dependencies": {
-    "goober": "2"
+    "@saulx/hash": "^3.0.0"
   },
   "devDependencies": {
     "@saulx/prettier-config": "^2.0.0",
     "@saulx/tsconfig": "^1.1.0",
-    "@types/react": "^18.0.9",
     "@types/node": "18",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "ava": "^6.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

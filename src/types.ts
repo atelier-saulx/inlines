@@ -3,6 +3,7 @@ import {
   CSSProperties,
   FunctionComponent,
   HTMLProps,
+  FC,
   ReactNode,
 } from 'react'
 
@@ -14,5 +15,5 @@ export type Style = CSSProperties & {
 export type Props = { [key: string]: any; style?: Style; children?: ReactNode }
 export type As = string | FunctionComponent<any> | ComponentClass<any, any>
 export type StyledComponent = FunctionComponent<Props>
-export type StyledHtmlComponent = FunctionComponent<HTMLProps<any> & Props>
+export type StyledHtmlComponent = FC<HTMLProps<any> & Props>
 export type StyledFn = (as: As, style: Style) => StyledComponent
