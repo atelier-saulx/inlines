@@ -1,4 +1,4 @@
-import { createElement, forwardRef } from 'react'
+import React, { createElement, forwardRef } from 'react'
 import { css, keyframes } from './css.js'
 import { transform } from './transform.js'
 
@@ -9,6 +9,7 @@ import type {
   StyledComponent,
   StyledHtmlComponent,
   StyledFn,
+  StyledProxy,
 } from './types.js'
 
 const styled = new Proxy(
@@ -52,7 +53,16 @@ const styled = new Proxy(
       return t[p]
     },
   },
-) as { [key: string]: StyledHtmlComponent } & StyledFn
+) as StyledProxy & StyledFn
 
 export type { Props, Style, As, StyledComponent, StyledFn, StyledHtmlComponent }
 export { styled, css, keyframes }
+
+React.createElement(styled.input, {
+  style: {
+    background: 1,
+  },
+  onChange(e) {
+    console.log(e.target.value)
+  },
+})
