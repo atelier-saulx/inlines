@@ -47,11 +47,6 @@ export const transform = (p: Props, style: Style = {}, ref: any) => {
     }
   }
 
-  // add some defaults
-  if (p.onClick && !s.cursor) {
-    s.cursor = 'pointer'
-  }
-
   props.style = s
   return props
 }

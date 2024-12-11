@@ -1,10 +1,9 @@
 import {
-  ComponentClass,
   CSSProperties,
   FunctionComponent,
-  InputHTMLAttributes,
   ReactHTML,
   ReactNode,
+  ReactSVG,
 } from 'react'
 
 export type Style = CSSProperties & {
@@ -14,16 +13,11 @@ export type Style = CSSProperties & {
 }
 
 export type Props = { [key: string]: any; style?: Style; children?: ReactNode }
-export type As = string | FunctionComponent<any> | ComponentClass<any, any>
-export type StyledComponent = FunctionComponent<Props>
-export type StyledHtmlComponent<T> = T extends T
-  ? FunctionComponent<InputHTMLAttributes<T>>
-  : never
+export type As = string | FunctionComponent<any>
 
-export type StyledFn = (as: As, style: Style) => StyledComponent
-
-type Keys = keyof ReactHTML
-
+export type StyledFn = (as: As, style: Style) => FunctionComponent<Props>
 export type StyledProxy = {
-  [Tag in Keys]: StyledHtmlComponent<JSX.IntrinsicElements[Tag]>
+  [Tag in keyof (ReactHTML & ReactSVG)]: FunctionComponent<
+    Omit<JSX.IntrinsicElements[Tag], 'style'> & { style?: Style }
+  >
 }
